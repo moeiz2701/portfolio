@@ -228,7 +228,7 @@ export function OtherProjects() {
         <Eyebrow index="✦" label="OTHER WORK" />
         <motion.h2
           id="other-heading"
-          className="mt-5 font-display leading-[0.95] tracking-[-0.02em]"
+          className="mt-5 font-display leading-[0.95] tracking-[-0.02em] text-paper/70"
           style={{ fontSize: "clamp(2.5rem, 7vw, 6rem)" }}
           variants={wipeUp}
           initial={reduce ? false : "hidden"}

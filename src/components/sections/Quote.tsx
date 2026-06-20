@@ -2,6 +2,7 @@
 import { motion, useReducedMotion } from "motion/react";
 import { wipeUp, viewportOnce } from "@/lib/motion";
 import { HairlineGrid } from "@/components/ui/HairlineGrid";
+import { Portal } from "@/components/ui/Portal";
 
 type QuoteProps = {
   lines: string[];
@@ -20,7 +21,7 @@ function renderLine(line: string, accent: string, uppercase: boolean) {
   return (
     <>
       {before}
-      <span className="relative inline-block">
+      <span className="relative inline-block text-acid">
         {match}
         <span
           aria-hidden
@@ -42,6 +43,12 @@ export function Quote({ lines, accent, uppercase = true }: QuoteProps) {
       style={{ paddingInline: "var(--gutter)", paddingBlock: "clamp(5rem, 10vh, 8rem)" }}
     >
       <HairlineGrid tone="ink" />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-[8%] top-1/2 z-0 hidden -translate-y-1/2 text-paper opacity-20 sm:block"
+      >
+        <Portal className="h-[min(82vh,780px)] w-[min(82vh,780px)]" rings={11} />
+      </div>
 
       <div className="relative z-10 w-full">
         {lines.map((line, i) => {
@@ -52,7 +59,7 @@ export function Quote({ lines, accent, uppercase = true }: QuoteProps) {
           return (
             <motion.div
               key={i}
-              className="block font-display leading-[1.08] tracking-[-0.03em]"
+              className="block font-display leading-[0.9] tracking-[-0.03em]"
               style={{ fontSize }}
               variants={wipeUp}
               custom={i}

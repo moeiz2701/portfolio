@@ -49,7 +49,7 @@ export function MainProjects() {
                 <div className="mb-[clamp(2.5rem,6vh,5rem)]">
                   <Eyebrow index="✦" label="PROJECTS" />
                   <h2
-                    className="mt-5 font-display leading-[0.92] tracking-[-0.02em]"
+                    className="mt-5 font-display leading-[0.92] tracking-[-0.02em] text-paper/70"
                     style={{ fontSize: "clamp(2.75rem, 8vw, 7rem)" }}
                   >
                     Selected work
@@ -71,7 +71,9 @@ export function MainProjects() {
                     [ {p.index} ]
                   </div>
                   <h3
-                    className="mt-3 font-display leading-[0.95] tracking-[-0.02em]"
+                    className={`mt-3 font-sans font-light leading-[1.02] tracking-[-0.01em] ${
+                      isInk ? "text-paper/85" : "text-ink/85"
+                    }`}
                     style={{ fontSize: "clamp(2rem, 5.5vw, 4.5rem)" }}
                   >
                     {p.name}

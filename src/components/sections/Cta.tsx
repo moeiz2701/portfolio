@@ -22,7 +22,7 @@ export function Cta() {
         <HairlineGrid tone="ink" />
         <div
           aria-hidden
-          className="pointer-events-none absolute -left-[10%] bottom-[-10%] hidden text-paper opacity-[0.12] sm:block"
+          className="pointer-events-none absolute -left-[10%] bottom-[-10%] hidden text-paper opacity-[0.24] sm:block"
         >
           <Portal className="h-[min(70vh,640px)] w-[min(70vh,640px)]" rings={10} />
         </div>

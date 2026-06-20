@@ -24,7 +24,7 @@ export function Hero() {
         aria-hidden
         className="pointer-events-none absolute right-[2%] top-1/2 z-0 hidden -translate-y-1/2 text-paper sm:block"
         initial={reduce ? false : { opacity: 0, scale: 0.96 }}
-        animate={{ opacity: 0.18, scale: 1 }}
+        animate={{ opacity: 0.3, scale: 1 }}
         transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
       >
         <Portal className="h-[min(75vh,720px)] w-[min(75vh,720px)]" rings={11} />
