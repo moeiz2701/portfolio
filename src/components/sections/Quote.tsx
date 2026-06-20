@@ -1,15 +1,11 @@
 "use client";
-import { useRef } from "react";
-import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { wipeUp, viewportOnce } from "@/lib/motion";
 import { HairlineGrid } from "@/components/ui/HairlineGrid";
-import { StrokeText } from "@/components/ui/StrokeText";
-import { Marquee } from "@/components/ui/Marquee";
 
 type QuoteProps = {
   lines: string[];
   accent: string;
-  marquee?: string[];
   uppercase?: boolean;
 };
 
@@ -28,7 +24,8 @@ function renderLine(line: string, accent: string, uppercase: boolean) {
         {match}
         <span
           aria-hidden
-          className="absolute -bottom-1 left-0 h-[3px] w-full bg-acid"
+          className="absolute left-0 w-full bg-acid"
+          style={{ height: "0.06em", bottom: "0.04em" }}
         />
       </span>
       {after}
@@ -36,44 +33,27 @@ function renderLine(line: string, accent: string, uppercase: boolean) {
   );
 }
 
-export function Quote({ lines, accent, marquee, uppercase = true }: QuoteProps) {
+export function Quote({ lines, accent, uppercase = true }: QuoteProps) {
   const reduce = useReducedMotion();
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const ghostX = useTransform(scrollYProgress, [0, 1], [-40, 40]);
 
   return (
     <section
-      ref={ref}
       className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-ink text-paper"
-      style={{ paddingInline: "var(--gutter)", paddingBlock: "var(--section-py)" }}
+      style={{ paddingInline: "var(--gutter)", paddingBlock: "clamp(5rem, 10vh, 8rem)" }}
     >
       <HairlineGrid tone="ink" />
 
-      {/* Ghost outline word drifting behind the stack */}
-      {!reduce && (
-        <motion.div
-          aria-hidden
-          style={{ x: ghostX }}
-          className="pointer-events-none absolute -right-[5%] bottom-[8%] z-0 select-none opacity-[0.06]"
-        >
-          <StrokeText className="block leading-none" >
-            <span style={{ fontSize: "clamp(6rem, 22vw, 22rem)" }}>
-              {accent.toUpperCase()}
-            </span>
-          </StrokeText>
-        </motion.div>
-      )}
-
-      <div className="relative z-10 max-w-[1600px]">
-        {lines.map((line, i) => (
-          <span key={i} className="block overflow-hidden">
-            <motion.span
-              className="block font-display leading-[0.95] tracking-[-0.03em]"
-              style={{ fontSize: "clamp(2.5rem, 9vw, 8rem)" }}
+      <div className="relative z-10 w-full">
+        {lines.map((line, i) => {
+          // Size each line to roughly span the content width, capped by height so
+          // short lines don't get absurdly tall. Gives the kinetic giant-type look.
+          const len = Math.max(line.length, 4);
+          const fontSize = `clamp(1.75rem, min(${(115 / len).toFixed(2)}vw, 26vh), 13rem)`;
+          return (
+            <motion.div
+              key={i}
+              className="block font-display leading-[1.08] tracking-[-0.03em]"
+              style={{ fontSize }}
               variants={wipeUp}
               custom={i}
               initial={reduce ? false : "hidden"}
@@ -81,16 +61,10 @@ export function Quote({ lines, accent, marquee, uppercase = true }: QuoteProps) 
               viewport={viewportOnce}
             >
               {renderLine(line, accent, uppercase)}
-            </motion.span>
-          </span>
-        ))}
+            </motion.div>
+          );
+        })}
       </div>
-
-      {marquee && marquee.length > 0 && (
-        <div className="relative z-10 mt-[clamp(3rem,6vh,6rem)]">
-          <Marquee items={marquee} />
-        </div>
-      )}
     </section>
   );
 }

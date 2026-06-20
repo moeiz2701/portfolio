@@ -13,14 +13,12 @@ export default function Page() {
       <Quote
         lines={["I plan.", "I document.", "I communicate.", "I build."]}
         accent="build"
-        marquee={["PLAN", "DOCUMENT", "COMMUNICATE", "BUILD"]}
       />
       <Skills />
       <Experience />
       <Quote
-        lines={["Developers not only learn,", "they adapt."]}
+        lines={["Developers", "not only learn,", "they adapt."]}
         accent="adapt"
-        marquee={["ADAPT", "LEARN", "SHIP", "REPEAT"]}
       />
       <MainProjects />
       <OtherProjects />

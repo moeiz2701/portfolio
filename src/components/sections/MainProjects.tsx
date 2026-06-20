@@ -46,8 +46,14 @@ export function MainProjects() {
           >
             <div className="mx-auto w-full max-w-[1600px]">
               {idx === 0 && (
-                <div className="mb-12">
-                  <Eyebrow index="✦" label="SELECTED WORK" />
+                <div className="mb-[clamp(2.5rem,6vh,5rem)]">
+                  <Eyebrow index="✦" label="PROJECTS" />
+                  <h2
+                    className="mt-5 font-display leading-[0.92] tracking-[-0.02em]"
+                    style={{ fontSize: "clamp(2.75rem, 8vw, 7rem)" }}
+                  >
+                    Selected work
+                  </h2>
                 </div>
               )}
 
@@ -65,8 +71,8 @@ export function MainProjects() {
                     [ {p.index} ]
                   </div>
                   <h3
-                    className="mt-2 font-display tracking-[-0.02em]"
-                    style={{ fontSize: "clamp(1.6rem, 3.2vw, 2.9rem)" }}
+                    className="mt-3 font-display leading-[0.95] tracking-[-0.02em]"
+                    style={{ fontSize: "clamp(2rem, 5.5vw, 4.5rem)" }}
                   >
                     {p.name}
                   </h3>

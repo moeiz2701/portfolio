@@ -26,8 +26,14 @@ export function Experience() {
           >
             <div className="mx-auto w-full max-w-[1600px]">
               {idx === 0 && (
-                <div className="mb-12">
-                  <Eyebrow index="02" label="EXPERIENCE" />
+                <div className="mb-[clamp(2.5rem,6vh,5rem)]">
+                  <Eyebrow index="02" label="CAREER" />
+                  <h2
+                    className="mt-5 font-display leading-[0.92] tracking-[-0.02em]"
+                    style={{ fontSize: "clamp(2.75rem, 8vw, 7rem)" }}
+                  >
+                    Experience
+                  </h2>
                 </div>
               )}
 
@@ -41,12 +47,15 @@ export function Experience() {
                 viewport={viewportOnce}
               >
                 <div>
-                  <div className={`font-mono text-xs uppercase tracking-[0.2em] ${dim}`}>
+                  <div
+                    className={`font-mono uppercase tracking-[0.2em] ${dim}`}
+                    style={{ fontSize: "clamp(0.85rem, 1.4vw, 1.15rem)" }}
+                  >
                     {role.role}
                   </div>
                   <div
-                    className="mt-2 font-display tracking-[-0.02em]"
-                    style={{ fontSize: "clamp(1.5rem, 3vw, 2.75rem)" }}
+                    className="mt-3 font-display leading-[0.95] tracking-[-0.02em]"
+                    style={{ fontSize: "clamp(2.25rem, 5.5vw, 4.5rem)" }}
                   >
                     {role.company}
                   </div>
