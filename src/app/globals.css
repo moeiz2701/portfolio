@@ -1,26 +1,97 @@
 @import "tailwindcss";
 
+@theme {
+  --color-ink: #000000;
+  --color-paper: #c8c8c8;
+  --color-bone: #e6e4df;
+  --color-smoke: #1a1a1a;
+  --color-acid: #16d982;
+
+  --font-display: var(--font-display), "Arial Black", sans-serif;
+  --font-sans: var(--font-sans), system-ui, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, monospace;
+  --font-pixel: var(--font-pixel), monospace;
+
+  --ease-brand: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --gutter: clamp(1.25rem, 5vw, 6rem);
+  --section-py: clamp(6rem, 14vh, 12rem);
+  --line-on-ink: rgba(200, 200, 200, 0.15);
+  --line-on-paper: rgba(0, 0, 0, 0.15);
+  --dim-on-ink: rgba(200, 200, 200, 0.6);
+  --dim-on-paper: rgba(0, 0, 0, 0.55);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Lenis recommended base */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Selection + focus in brand colors */
+::selection {
+  background: var(--color-acid);
+  color: var(--color-ink);
+}
+:focus-visible {
+  outline: 2px solid var(--color-acid);
+  outline-offset: 3px;
+}
+
+/* Honor reduced motion at the CSS layer too */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Utility: outlined display text */
+.stroke-text {
+  color: transparent;
+  -webkit-text-stroke: 1.5px currentColor;
+  text-stroke: 1.5px currentColor;
+}
+
+/* Engraved name: outline that fills on hover */
+.engrave {
+  transition: color 0.45s var(--ease-brand);
+}
+.engrave:hover {
+  color: var(--color-paper);
+  -webkit-text-stroke-width: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .engrave {
+    transition: none;
+  }
 }
