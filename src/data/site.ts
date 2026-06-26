@@ -13,7 +13,7 @@ export const site = {
   cv: "/abdul-moeiz-cv.pdf",
   links: {
     github: "https://github.com/moeiz2701",
-    linkedin: "https://www.linkedin.com/in/abdul-moeiz",
+    linkedin: "https://www.linkedin.com/in/abdul-moeiz-9634772a2/",
     portfolio: "https://cv-teal-chi.vercel.app", // legacy; optional
   },
   nav: [
